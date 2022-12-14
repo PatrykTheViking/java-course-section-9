@@ -22,11 +22,13 @@ public class Main {
         int[] myIntegers = getIntegers(5);
         System.out.println("-".repeat(30));
 
-        printArray(myIntegers);
+        /*printArray(myIntegers);*/
+        System.out.println("My array contains: " + Arrays.toString(myIntegers));
         int[] sorted = sortIntegers(myIntegers);
 
         System.out.println("-".repeat(30));
-        printArray(sorted);
+        /*printArray(sorted);*/
+        System.out.println("My sorted array contains: " + Arrays.toString(sorted));
 
 
     }
