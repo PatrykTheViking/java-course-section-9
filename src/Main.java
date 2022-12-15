@@ -19,20 +19,29 @@ public class Main {
 
         System.out.println("The average is " + getAverage(myIntegers));*/
 
-        int[] myIntegers = getIntegers(5);
+/*        int[] myIntegers = getIntegers(5);
         System.out.println("-".repeat(30));
 
-        /*printArray(myIntegers);*/
+        *//*printArray(myIntegers);*//*
         System.out.println("My array contains: " + Arrays.toString(myIntegers));
         int[] sorted = sortIntegers(myIntegers);
 
         System.out.println("-".repeat(30));
-        /*printArray(sorted);*/
-        System.out.println("My sorted array contains: " + Arrays.toString(sorted));
+        *//*printArray(sorted);*//*
+        System.out.println("My sorted array contains: " + Arrays.toString(sorted));*/
 
+        System.out.println("How many integers would you like to enter to your array?\r");
+        int number = scanner.nextInt();
+        scanner.nextLine(); // next line to process enter key
+
+        int[] array = getIntegers(number);
+        System.out.println("You entered numbers: " + Arrays.toString(array));
+        System.out.println("The smallest integer you entered is: " + findMin(array));
+
+        reverse(array);
+        System.out.println("Reversed array is: " + Arrays.toString(array));
 
     }
-
     public static void printArray(int[] array) {
         for (int i = 0; i < array.length; i++) {
             System.out.println("Element " + i + ", value is " + array[i]);
@@ -84,6 +93,24 @@ public class Main {
             }
         }
         return sortedArray;
+    }
+    public static int findMin(int[] array){
+        int[] sorted = sortIntegers(array);
+        return sorted[sorted.length-1];
+    }
+
+    public static void reverse(int[] array){
+
+         int maxIndex = array.length-1;
+         int halfLength = array.length / 2;
+
+         for(int i=0; i<halfLength; i++){
+
+             int temp = array[i];
+             array[i] = array[maxIndex-i];
+             array[maxIndex-i] = temp;
+
+         }
     }
 }
 
