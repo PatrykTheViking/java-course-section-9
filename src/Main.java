@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class Main {
 
     private static Scanner scanner = new Scanner(System.in);
+    private static GroceryList groceryList = new GroceryList();
 
     public static void main(String[] args) {
 
@@ -30,7 +31,7 @@ public class Main {
         *//*printArray(sorted);*//*
         System.out.println("My sorted array contains: " + Arrays.toString(sorted));*/
 
-        System.out.println("How many integers would you like to enter to your array?\r");
+/*        System.out.println("How many integers would you like to enter to your array?\r");
         int number = scanner.nextInt();
         scanner.nextLine(); // next line to process enter key
 
@@ -39,15 +40,90 @@ public class Main {
         System.out.println("The smallest integer you entered is: " + findMin(array));
 
         reverse(array);
-        System.out.println("Reversed array is: " + Arrays.toString(array));
+        System.out.println("Reversed array is: " + Arrays.toString(array));*/
 
+        boolean quit = false;
+        int choice = 0;
+        printInstructions();
+        while(!quit){
+            System.out.println("Enter your choice: ");
+            choice = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (choice){
+                case 0:
+                    printInstructions();
+                    break;
+                case 1:
+                    groceryList.printGroceryList();
+                    break;
+                case 2:
+                    addItem();
+                    break;
+                case 3:
+                    modifyItem();
+                    break;
+                case 4:
+                    removeItem();
+                    break;
+                case 5:
+                    searchForItem();
+                    break;
+                case 6:
+                    quit = true;
+                    break;
+            }
+        }
     }
+
+    public static void printInstructions(){
+        System.out.println("\nPress ");
+        System.out.println("\t 0 - to print choice options");
+        System.out.println("\t 1 - to print the list of grocery items");
+        System.out.println("\t 2 - to add an item to the list");
+        System.out.println("\t 3 - to modify an item in the list");
+        System.out.println("\t 4 - to remove an item from the list");
+        System.out.println("\t 5 - to search an item in the list");
+        System.out.println("\t 6 - to quit the application");
+    }
+
+    public static void addItem(){
+        System.out.print("Please enter the grocery item: ");
+        groceryList.addGroceryItem(scanner.nextLine());
+    }
+
+    public static void modifyItem(){
+        System.out.print("Please enter the grocery item number to modify: ");
+        int number = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("Enter new item: ");
+        String newItem = scanner.nextLine();
+        groceryList.modifyGroceryItem(number-1, newItem);
+    }
+
+    public static void removeItem(){
+        System.out.print("Please enter the grocery item number to remove: ");
+        int number = scanner.nextInt();
+        scanner.nextLine();
+        groceryList.removeGroceryItem(number-1);
+    }
+
+    public static void searchForItem(){
+        System.out.println("Item to search for: ");
+        String searchItem = scanner.nextLine();
+        if(groceryList.findItem(searchItem) != null){
+            System.out.println("Found " + searchItem + " in our grocery list");
+        } else {
+            System.out.println(searchItem + " is not in our shopping list");
+        }
+    }
+
+
     public static void printArray(int[] array) {
         for (int i = 0; i < array.length; i++) {
             System.out.println("Element " + i + ", value is " + array[i]);
         }
     }
-
     public static int[] getIntegers(int number) {
         System.out.println("Enter " + number + " integer values.\r");
         int[] values = new int[number];
@@ -112,5 +188,16 @@ public class Main {
 
          }
     }
+
+    public static void resize(int[] array){
+
+        int[] original = array;
+        array = new int[10]; // resize array to 10 slots
+
+        for(int i =0;i< original.length; i++){
+            array[i] = original[i];
+        }
+    }
+
 }
 
